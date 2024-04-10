@@ -1,12 +1,123 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Productos</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
+
 <body>
-    
+    <!-- HEADER -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#"><img class="img-fluid" src="../img/logo.png" alt=""
+                        width="40px">Patitas y Compañía</a>
+                <!-- Botón para dispositivos móviles -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Producto</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Nosotros</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contacto</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- MAIN -->
+    <main>
+        <a href="login.html"><img src="../img/banner.png" alt="banner" class="img-fluid w-100"></a>
+
+        <div class="container mt-5">
+            <h2 class="mb-4">Productos</h2>
+            <div class="row">
+                <!-- Producto 1: Bandana -->
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <a href="../HTML/productos/bandana.html"><img src="../img/bandana.webp" class="card-img-top" alt="Bandana para Mascotas"></a>
+                        <div class="card-body">
+                            <h5 class="card-title">Bandana para Mascotas</h5>
+                            <p class="card-text">Hermosas bandanas de diferentes tamaños y diseños.</p>
+                            <p class="card-text"><strong>$5.000</strong></p>
+                            <a href="#" class="btn btn-primary">Agregar al Carrito</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Producto 2: Correa -->
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <a href=""><img src="../img/correa.webp" class="card-img-top" alt="Correa para Mascotas"></a>
+                        <div class="card-body">
+                            <h5 class="card-title">Correa para Mascotas</h5>
+                            <p class="card-text">Correas resistentes y cómodas para el paseo diario.</p>
+                            <p class="card-text"><strong>$10.000</strong></p>
+                            <a href="#" class="btn btn-primary">Agregar al Carrito</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Producto 3: Identificación -->
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <a href=""><img src="../img/identificacion.webp" class="card-img-top"
+                                alt="Identificación para Mascotas"></a>
+                        <div class="card-body">
+                            <h5 class="card-title">Identificación para Mascotas</h5>
+                            <p class="card-text">Placas de identificación personalizables.</p>
+                            <p class="card-text"><strong>$4.000</strong></p>
+                            <a href="#" class="btn btn-primary">Agregar al Carrito</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Producto 4: pelota -->
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <a href=""><img src="../img/pelota.webp" class="card-img-top" alt="Pelota para Mascotas">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title">Pelota para Mascotas</h5>
+                            <p class="card-text">Pelota de caucho resistente a cualquier mascota.</p>
+                            <p class="card-text"><strong>$10.000</strong></p>
+                            <a href="#" class="btn btn-primary">Agregar al Carrito</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Producto 5: rascador -->
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <a href=""><img src="../img/rascador.webp" class="card-img-top" alt="Rascador para Mascotas">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title">Rascador para Gatos</h5>
+                            <p class="card-text">Rascador para gatos de madera y zonas acolchadas.</p>
+                            <p class="card-text"><strong>$20.000</strong></p>
+                            <a href="#" class="btn btn-primary">Agregar al Carrito</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <!-- FOOTER -->
+    <footer class="bg-dark py-4">
+        <div class="container">
+            <p class="m-0 text-white text-center">Patitas y Compañía</p>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
