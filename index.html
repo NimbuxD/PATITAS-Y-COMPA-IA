@@ -12,44 +12,51 @@
 
 </head>
 
-
-
-
-
-<body class="d-flex flex-column min-vh-100">
-
-    <!-- Navbar -->
+<body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark flex-wrap">
             <div class="container">
-                <a class="navbar-brand" href="#">Patitas y Compañía</a>
-                <!-- carrito -->
-                <button type="button" class="col-1 btn" data-bs-toggle="modal" data-bs-target="#myModal">
-                    <span title="Carrito" class="material-symbols-outlined" style="color: white;">
-                        shopping_cart
-                    </span>
-                </button>
+                <a class="navbar-brand" href="../index.html"><img class="img-fluid" src="../img/logo.png" alt=""
+                        width="40px">Patitas y Compañía</a>
+
                 <!-- Botón para dispositivos móviles -->
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Productos</a>
+                            <a class="nav-link" href="../HTML/productos.html">Productos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Nosotros</a>
+                            <a class="nav-link" href="../HTML/contacto.html">Contacto</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contacto</a>
+                            <a class="nav-link" href="../HTML/perfil.html">Perfil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Perfil</a>
+                            <a class="nav-link d-block d-sm-none d-md-block d-lg-none" href="/HTML/login.html">Iniciar Sesion</a>
+                        </li>
+                        <li class="nav-item">
+                            <button type="button" class="btn d-block d-sm-none d-md-block d-lg-none" data-bs-toggle="modal" data-bs-target="#myModal">
+                                <span title="Carrito" class="material-symbols-outlined text-white" >
+                                    shopping_cart
+                                </span>
+                            </button>
                         </li>
                     </ul>
                 </div>
+                <!-- Inicio sesion -->
+                <a class="text-white text-decoration-none h5 pe-2 border-end border-white d-none d-sm-block d-md-none d-lg-block" href="/HTML/login.html">Iniciar Sesion</a>
+                <!-- Carrito -->
+                <button type="button" class="btn d-none d-sm-block d-md-none d-lg-block" data-bs-toggle="modal" data-bs-target="#myModal">
+                    <span title="Carrito" class="material-symbols-outlined text-white" >
+                        shopping_cart
+                    </span>
+                </button>
+
             </div>
 
         </nav>
@@ -78,7 +85,6 @@
                                 </div>
                             </div>
                             <hr>
-
                             <div class="row container d-flex justify-content-center mx-0">
                                 <div class="col-6">
                                     <div class="fw-bold">Pago con transferencias</div>
@@ -93,9 +99,7 @@
                                 <div class="textgrey col-6 fw-bold">Envío</div>
                                 <span class="textgrey col-6 fw-bold text-center">-</span>
                             </div>
-
                             <hr>
-
                             <div class="row container d-flex justify-content-center mx-0">
                                 <div class="col-6">
                                     <div class="textgrey fw-bold">TOTAL </div>
@@ -112,7 +116,6 @@
                         <button class="col btn btn-success">Iniciar pago</button>
 
                     </div>
-
                 </div>
             </div>
         </div>
@@ -121,56 +124,100 @@
     <!-- fin del navbar -->
 
     <!-- Contenido -->
-    <main class="">
-        <div class="container">
-            <h2 class="text-center">Nosotros</h2>
+    <main>
+        <!-- carrusel -->
+        <div id="carouselExampleCaptions" class="carousel slide">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+            </div>
 
-            <p>¡Descubre los mejores productos para consentir a tu mascota en Patitas y Compañía! Desde juguetes
-                divertidos y accesorios elegantes hasta artículos de cuidado personal, tenemos todo lo que necesitas
-                para hacer que cada día sea especial para tu compañero peludo. En Patitas y Compañía, nos dedicamos a
-                brindar amor y cuidado a nuestros amigos de cuatro patas. Explora nuestra amplia selección de productos
-                de alta calidad y haz que tu mascota se sienta amada y mimada. ¡Compra ahora y crea momentos
-                inolvidables con tu fiel amigo!</p>
-
-            <div id="carouselExampleCaptions" class="carousel slide">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
-                        aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
+            <div id="carouselExampleFade" class="carousel slide carousel-fade">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <a href="HTML/productos.html"> <img src="img/carrusel1si.png" class="d-block w-100"
+                                alt="..."></a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="HTML/productos.html"><img src="img/banner2si.png" class="d-block w-100" alt="...">
+                        </a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="HTML/productos.html"> <img src="img/banner3si.png" class="d-block w-100" alt="...">
+                        </a>
+                    </div>
                 </div>
-                <!-- carrusel -->
-                <div id="carouselExampleFade" class="carousel slide carousel-fade">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <a href="HTML/productos.html"> <img src="img/carrusel1si.png" class="d-block w-100"
-                                    alt="..."></a>
-                        </div>
-                        <div class="carousel-item">
-                            <a href="HTML/productos.html"><img src="img/banner2si.png" class="d-block w-100" alt="...">
-                            </a>
-                        </div>
-                        <div class="carousel-item">
-                            <a href="HTML/productos.html"> <img src="img/banner3si.png" class="d-block w-100" alt="...">
-                            </a>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+            <!-- fin del carrusel -->
+
+            <div class="container mt-5">
+                <h2 class="mb-4">Productos populares</h2>
+                <div class="row">
+                    <!-- Producto 1: Bandana -->
+                    <div class="col-md-4 mb-3">
+                        <div class="card">
+                            <a href="../HTML/productos/bandana.html"><img src="../img/bandana.webp" class="card-img-top"
+                                    alt="Bandana para Mascotas"></a>
+                            <div class="card-body">
+                                <h5 class="card-title">Bandana para Mascotas</h5>
+                                <p class="card-text">Hermosas bandanas de diferentes tamaños y diseños.</p>
+                                <p class="card-text"><strong>$5.000</strong></p>
+                                <a href="#" class="btn btn-primary">Agregar al Carrito</a>
+                            </div>
                         </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade"
-                        data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-                <!-- fin del carrusel -->
+                    <!-- Producto 2: Correa -->
+                    <div class="col-md-4 mb-3">
+                        <div class="card">
+                            <a href="../HTML/productos/correa.html"><img src="../img/correa.webp" class="card-img-top"
+                                    alt="Correa para Mascotas"></a>
+                            <div class="card-body">
+                                <h5 class="card-title">Correa para Mascotas</h5>
+                                <p class="card-text">Correas resistentes y cómodas para el paseo diario.</p>
+                                <p class="card-text"><strong>$10.000</strong></p>
+                                <a href="#" class="btn btn-primary">Agregar al Carrito</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Producto 3: Identificación -->
+                    <div class="col-md-4 mb-3">
+                        <div class="card">
+                            <a href="../HTML/productos/identificacion.html"><img src="../img/identificacion.webp"
+                                    class="card-img-top" alt="Identificación para Mascotas"></a>
+                            <div class="card-body">
+                                <h5 class="card-title">Identificación para Mascotas</h5>
+                                <p class="card-text">Placas de identificación personalizables.</p>
+                                <p class="card-text"><strong>$4.000</strong></p>
+                                <a href="#" class="btn btn-primary">Agregar al Carrito</a>
+                            </div>
+                        </div>
+                    </div>
 
-            </div>
+
+
+                    <!-- <div class="container py-4">
+                <h2 class="text-center">Nosotros</h2>
+                <p>¡Descubre los mejores productos para consentir a tu mascota en Patitas y Compañía! Desde juguetes
+                    divertidos y accesorios elegantes hasta artículos de cuidado personal, tenemos todo lo que necesitas
+                    para hacer que cada día sea especial para tu compañero peludo. En Patitas y Compañía, nos dedicamos a
+                    brindar amor y cuidado a nuestros amigos de cuatro patas. Explora nuestra amplia selección de productos
+                    de alta calidad y haz que tu mascota se sienta amada y mimada. ¡Compra ahora y crea momentos
+                    inolvidables con tu fiel amigo!</p>
+            </div> -->
     </main>
     <!--fin del contenido   -->
 
