@@ -8,9 +8,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
-<body>
+<body class="fondo">
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark flex-wrap">
             <div class="container">
@@ -122,38 +123,51 @@
             </div>
         </div>
     </header>
-    <div class="container-fluid">
-        <div class="row justify-content-center align-items-center" style="height: 100vh;">
-            <div class="col-md-6">
+    <div class="container-fluid" style="padding: 0;">
+        <div class="row align-items-center m-2" style="height: 100vh; margin: 0;">
+            <!-- Columna de la imagen -->
+            <div class="col-md-6 d-flex justify-content-center align-items-center">
+                <img src="../img/user-icon-on-transparent-background-free-png.webp" class="img-fluid" alt="Img" style="width: 100%; height: 100%;">
+            </div>                    
+           <!-- Columna del formulario -->
+            <div class="col-md-6" style="margin-right: -20px;"> <!-- Aplicamos un margen negativo -->
                 <!-- Formulario -->
-                <div class="card">
+                <div class="card" style="margin: 0; background-color: transparent; border: none;">
                     <div class="card-body">
-                        <form>
-                            <h3 class="card-title text-center">Formulario de Contacto</h3>
-                            <div class="form-group">
-                                <label for="telefono">Nombre</label>
-                                <input type="Nombre" class="form-control" id="telefono" name="Nombre "
-                                    placeholder="Nombre" required>
+                        <form style="margin: 0;">
+                            <h3 class="card-title text-center">Contacto</h3>
+                            <div class="form-group" style="margin: 0;">
+                                <label for="nombre">Nombre</label>
+                                <input type="texto" class="form-control" id="texto" name="nombre" placeholder="Nombre" required>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="margin: 0;">
                                 <label for="telefono">Teléfono</label>
-                                <input type="tel" class="form-control" id="telefono" name="telefono"
-                                    placeholder="Teléfono" required>
+                                <input type="tel" class="form-control" id="tel" name="telefono" placeholder="Teléfono" required>
                             </div>
-                            <div class="form-group m-1">
-                                <button class="btn btn-primary btn-block" type="submit">Enviar</button>
+                            <div class="form-group" style="margin: 0;">
+                                <label for="direccion">Dirección</label>
+                                <input type="direc" class="form-control" id="direc" name="direccion" placeholder="Dirección" required>
+                            </div>
+                            <div class="form-group" style="margin: 0;">
+                                <label for="direccion">Correo Electrónico </label>
+                                <input type="correo" class="form-control" id="correo" name="direccion" placeholder="Correo Electrónico" required>
+                            </div>
+                            <div class="form-group m-1" style="margin: 0;">
+                                <button class="btn btn-primary btn-block" type="submit">Guardar</button>
                             </div>
                         </form>
                     </div>
                 </div>
-                <!-- fin del formulario -->
-            </div>
-            <div class="col-md-6">
-                <!-- Imagen -->
-                <img src="../img/logo2.png" class="img-fluid" alt="Img">
-            </div>
+                <!-- Fin del formulario -->
+            </div>     
         </div>
     </div>
+    <!-- FOOTER -->
+    <footer class="bg-dark py-4">
+        <div class="container">
+            <p class="m-0 text-white text-center">Patitas y Compañía</p>
+        </div>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
