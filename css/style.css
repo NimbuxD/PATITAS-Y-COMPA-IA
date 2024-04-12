@@ -3,11 +3,9 @@ html, body{
     height: 100%;
     margin: 0;
     padding: 0;
-}
-.fondo{
     background-image: url('../img/fondo_decoracion.png');
-    
 }
+
 
 .ancho-card{
     width: 80%;    
