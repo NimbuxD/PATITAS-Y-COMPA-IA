@@ -6,7 +6,12 @@ html, body{
     background-image: url('../img/fondo_decoracion.png');
 }
 
-
+.fondo{
+    background-image: url('../img/imagen/4.png');
+}
+.border-custom{
+    border: 4px solid black !important;
+}
 .ancho-card{
     width: 80%;    
     

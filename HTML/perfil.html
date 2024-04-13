@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
-<body class="fondo">
+<body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark flex-wrap">
             <div class="container">
@@ -127,33 +127,38 @@
         <div class="container vh-100 ">
             <div class="row h-100 justify-content-center align-items-center">
                 <div class="col-md-6">
-                    <div class="card bg-transparent border-0">
-                        <div class="card-body">
-                            <h3 class="text-center">PERFIL DE USUARIO</h3>
+                    <div class="card fondo border-custom">
+                        <div class="card-body ">
+                            <h3 class="text-center fw-bold">PERFIL DE USUARIO</h3>
                             <div class="row g-3 align-items-center">
                                 <div class="col-md-5">
-                                    <img src="../img/iconoperfil.png" alt="Imagen de usuario" class="img-fluid rounded-circle">
+                                    <img src="../img/iconoperfil.png" alt="Imagen de usuario"
+                                        class="img-fluid rounded-circle shadow">
                                 </div>
                                 <div class="col-md-7">
                                     <form>
                                         <div class="mb-3">
-                                            <label for="nombre" class="form-label">Nombre</label>
-                                            <input type="text" class="form-control" id="nombre" placeholder="Pedro Infante">
+                                            <label for="nombre" class="form-label fw-bold">Nombre</label>
+                                            <input type="text" class="form-control border-custom" id="nombre"
+                                                placeholder="Pedro Infante">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="telefono" class="form-label">Teléfono</label>
-                                            <input type="text" class="form-control" id="telefono" placeholder="+56999999999">
+                                            <label for="telefono" class="form-label fw-bold">Teléfono</label>
+                                            <input type="text" class="form-control border-custom" id="telefono"
+                                                placeholder="+56999999999">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="email" class="form-label">Correo Electrónico</label>
-                                            <input type="email" class="form-control" id="email" placeholder="correo@patitasycompania.cl">
+                                            <label for="email" class="form-label fw-bold">Correo Electrónico</label>
+                                            <input type="email" class="form-control border-custom" id="email"
+                                                placeholder="correo@patitasycompania.cl">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="address" class="form-label">Dirección</label>
-                                            <input type="address" class="form-control" id="address" placeholder="Av. nueva calle 123">
+                                            <label for="address" class="form-label fw-bold">Dirección</label>
+                                            <input type="address" class="form-control border-custom" id="address"
+                                                placeholder="Av. nueva calle 123">
                                         </div>
                                         <div class="d-flex justify-content-center">
-                                            <button type="submit" class="btn btn-primary">Guardar</button>
+                                            <button type="submit" class="btn btn-primary px-5">Guardar</button>
                                         </div>
                                     </form>
                                 </div>
