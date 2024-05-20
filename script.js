@@ -1,42 +1,136 @@
 $(document).ready(function () {
-    $('#loginForm').submit(function (event) {
-        event.preventDefault(); // Prevenir el envío del formulario
+    // validacion registro
+    $('#registroForm').on('submit', function (event) {
+        event.preventDefault();
 
-        // Limpiar errores anteriores
-        $('#emailError').text('');
-        $('#passwordError').text('');
+        let isValid = true;
 
-        // Obtener valores
-        var email = $('#email').val();
-        var password = $('#password').val();
-        var isValid = true;
+        // Validar nombre
+        if ($('#nombre').val().trim() === '') {
+            $('#nombreError').text('El nombre es obligatorio');
+            isValid = false;
+        } else {
+            $('#nombreError').text('');
+        }
+
+        // Validar apellido
+        if ($('#apellido').val().trim() === '') {
+            $('#apellidoError').text('El apellido es obligatorio');
+            isValid = false;
+        } else {
+            $('#apellidoError').text('');
+        }
+
+        // Validar teléfono
+        const phonePattern = /^[0-9]+$/;
+        if (!phonePattern.test($('#telefono').val().trim())) {
+            $('#telefonoError').text('El teléfono debe contener solo números');
+            isValid = false;
+        } else {
+            $('#telefonoError').text('');
+        }
 
         // Validar correo electrónico
-        if (!email) {
-            $('#emailError').text('El correo electrónico es obligatorio.');
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test($('#email').val().trim())) {
+            $('#emailError').text('El correo electrónico no es válido');
             isValid = false;
-        } else if (!validateEmail(email)) {
-            $('#emailError').text('Por favor, ingresa un correo electrónico válido.');
-            isValid = false;
+        } else {
+            $('#emailError').text('');
         }
 
-        // Validar contraseña
-        if (!password) {
-            $('#passwordError').text('La contraseña es obligatoria.');
+        // Validar dirección
+        if ($('#direccion').val().trim() === '') {
+            $('#direccionError').text('La dirección es obligatoria');
             isValid = false;
-        } else if (password.length < 6) {
-            $('#passwordError').text('La contraseña debe tener al menos 6 caracteres.');
-            isValid = false;
+        } else {
+            $('#direccionError').text('');
         }
 
-        // Si es válido, enviar el formulario
         if (isValid) {
             this.submit();
         }
     });
 
-    function validateEmail(email) {
-        var re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        return re.test(email);
-    }
+    // validacion login
+    $('#loginForm').on('submit', function(event) {
+        event.preventDefault();
+        
+        let isValid = true;
+
+        // Validar correo electrónico
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test($('#email').val().trim())) {
+            $('#emailError').text('El correo electrónico no es válido');
+            isValid = false;
+        } else {
+            $('#emailError').text('');
+        }
+
+        // Validar contraseña
+        if ($('#password').val().trim() === '') {
+            $('#passwordError').text('La contraseña es obligatoria');
+            isValid = false;
+        } else {
+            $('#passwordError').text('');
+        }
+
+        if (isValid) {
+            this.submit();
+        }
+    });
+
+    // validacion contacto
+    $('#contactoForm').on('submit', function (event) {
+        event.preventDefault();
+    
+        let isValid = true;
+    
+        // Validar nombre
+        if ($('#nombre').val().trim() === '') {
+            $('#nombreError').text('El nombre es obligatorio');
+            isValid = false;
+        } else {
+            $('#nombreError').text('');
+        }
+    
+        // Validar teléfono
+        const phonePattern = /^[0-9]+$/;
+        if (!phonePattern.test($('#telefono').val().trim())) {
+            $('#telefonoError').text('El teléfono debe contener solo números');
+            isValid = false;
+        } else {
+            $('#telefonoError').text('');
+        }
+    
+        // Validar correo electrónico
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test($('#email').val().trim())) {
+            $('#emailError').text('El correo electrónico no es válido');
+            isValid = false;
+        } else {
+            $('#emailError').text('');
+        }
+    
+        if (isValid) {
+            this.submit();
+        }
+    });
+
+    // validacion compra
+    $('.add-to-cart').on('click', function(event) {
+        event.preventDefault();
+        
+        if (confirm('¿Estás seguro de que quieres agregar este producto al carrito?')) {
+            // Lógica para agregar el producto al carrito
+        }
+    });
+});
+
+
+
+$(document).ready(function () {
+});
+
+$(document).ready(function () {
 });
