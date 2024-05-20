@@ -196,6 +196,55 @@
         </div>
 
     </main>
+    <script>
+        $(document).ready(function() {
+            // Función para cargar productos
+            function loadProducts() {
+                $.ajax({
+                    url: 'js/producto.js', // Cambia esta URL a tu API real
+                    type: 'GET',
+                    success: function(products) {
+                        let productContainer = $('.row');
+                        productContainer.empty(); // Vaciar el contenedor antes de añadir nuevos productos
+                        products.forEach(function(product) {
+                            let productCard = `
+                                <div class="col-md-4 mb-3">
+                                    <div class="card">
+                                        <a href="${product.link}"><img src="${product.image}" class="card-img-top" alt="${product.name}"></a>
+                                        <div class="card-body">
+                                            <h5 class="card-title">${product.name}</h5>
+                                            <p class="card-text">${product.description}</p>
+                                            <p class="card-text"><strong>$${product.price}</strong></p>
+                                            <a href="#" class="btn btn-primary" data-id="${product.id}">Agregar al Carrito</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                            productContainer.append(productCard);
+                        });
+                    },
+                    error: function(error) {
+                        console.error('Error al cargar los productos:', error);
+                    }
+                });
+            }
+    
+            // Llamar a la función para cargar productos al cargar la página
+            loadProducts();
+    
+            // Evento para agregar al carrito
+            $(document).on('click', '.btn-primary', function(e) {
+                e.preventDefault();
+                let productId = $(this).data('id');
+                // Lógica para agregar el producto al carrito
+                console.log('Producto agregado al carrito con ID:', productId);
+            });
+        });
+    </script>
+
+
+
+
     <!-- FOOTER -->
     <footer class="bg-dark py-4">
         <div class="container">
