@@ -1,0 +1,14 @@
+-instalar python y seleccionar casilla "Add python.exe to PATH"
+
+-luego en una consola poner 
+"pip install Flask Flask-RESTful"
+
+-Dentro de la carpeta del proyecto utilizar terminal y ejecutar con comando: 
+"python app.py" 
+
+
+-luego podrá entrar en 
+
+http://127.0.0.1:5000
+
+y listo!
