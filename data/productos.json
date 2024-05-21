@@ -1,0 +1,7 @@
+[
+    {"id": 1, "nombre": "Bandana", "precio": 5000, "descripcion": "Hermosas bandanas de diferentes tamaños y diseños.", "foto": "/static/img/bandana.webp"},
+    {"id": 2, "nombre": "Correa", "precio": 10000, "descripcion": "Correas resistentes y cómodas para el paseo diario de tu mascota.", "foto": "/static/img/correa.webp"},
+    {"id": 3, "nombre": "Identificación para mascotas", "precio": 4000, "descripcion": "Placas de identificación personalizables para tu mascota.", "foto": "/static/img/identificacion.webp"},
+    {"id": 4, "nombre": "Pelota", "precio": 10000, "descripcion": "Pelota de caucho resistente a cualquier mascota.", "foto": "/static/img/pelota.webp"},
+    {"id": 5, "nombre": "Rascador", "precio": 20000, "descripcion": "Rascador para gatos de madera y zonas acolchadas.", "foto": "/static/img/rascador.webp"}
+]
