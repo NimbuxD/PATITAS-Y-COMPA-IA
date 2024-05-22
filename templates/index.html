@@ -27,13 +27,14 @@
                             <a class="nav-link" href="/productos">Productos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('contacto') }}">Contacto</a>
+                            <a class="nav-link" href="/contacto">Contacto</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('perfil') }}">Perfil</a>
+                            <a class="nav-link" href="/perfil">Perfil</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link d-block d-sm-none d-md-block d-lg-none" href="{{ url_for('login') }}">Iniciar Sesión</a>
+                            <a class="nav-link d-block d-sm-none d-md-block d-lg-none" href="/login">Iniciar
+                                Sesión</a>
                         </li>
                         <li class="nav-item">
                             <button type="button" class="btn d-block d-sm-none d-md-block d-lg-none" data-bs-toggle="modal" data-bs-target="#myModal">
@@ -45,7 +46,8 @@
                     </ul>
                 </div>
                 <!-- Inicio sesión -->
-                <a class="text-white text-decoration-none h5 pe-2 border-end border-white d-none d-sm-block d-md-none d-lg-block" href="{{ url_for('login') }}">Iniciar Sesión</a>
+                <a class="text-white text-decoration-none h5 pe-2 border-end border-white d-none d-sm-block d-md-none d-lg-block"
+                    href="/login">Iniciar Sesión</a>
                 <!-- Carrito -->
                 <button type="button" class="btn d-none d-sm-block d-md-none d-lg-block" data-bs-toggle="modal" data-bs-target="#myModal">
                     <span title="Carrito" class="material-symbols-outlined text-white">
@@ -64,13 +66,39 @@
                     </div>
                     Modal body
                     <div class="modal-body">
-                        <div id="cartItems">
-                            Los productos en el carrito se cargarán aquí
-                        </div>
-                        <!-- <hr> -->
-                        <div class="row container d-flex justify-content-center mx-0">
-                            <div class="col-6">
-                                <div class="textgrey fw-bold">TOTAL</div>
+                        <div class="">
+                            <div class="card p-2">
+                                <div class="d-flex justify-content-center"><img src="../static/img/bandana.webp" alt="bandana"
+                                        width="100px"></div>
+                                <div class="row container d-flex justify-content-center mx-0">
+                                    <div class="col-12 text-center fw-bold">bandana</div>
+                                    <div class="col-6">Precio transferencias</div>
+                                    <div class="col-6 textlila text-center fw-bold">$5.000</div>
+                                    <div class="col-6">Otros medios de pago</div>
+                                    <div class="col-6 text-center fw-bold">$5.000</div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row container d-flex justify-content-center mx-0">
+                                <div class="col-6">
+                                    <div class="fw-bold">Pago con transferencias</div>
+                                    <div class="textgreysecond">Transferencia y Banco Estado</div>
+                                </div>
+                                <span class="col-6 textlila fw-bold text-center">$5.000</span>
+                                <div class="col-6">
+                                    <div>Otros medios de pago</div>
+                                    <div class="textgreysecond">Webpay/Onepay</div>
+                                </div>
+                                <span class="col-6 text-center">$5.000</span>
+                                <div class="textgrey col-6 fw-bold">Envío</div>
+                                <span class="textgrey col-6 fw-bold text-center">-</span>
+                            </div>
+                            <hr>
+                            <div class="row container d-flex justify-content-center mx-0">
+                                <div class="col-6">
+                                    <div class="textgrey fw-bold">TOTAL</div>
+                                </div>
+                                <span class="textgrey col-6 text-center fw-bold">-</span>
                             </div>
                             <span id="totalPrice" class="textgrey col-6 text-center fw-bold"></span>
                         </div>
