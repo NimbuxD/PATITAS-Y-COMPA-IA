@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Limitar a los primeros 3 productos
             let productosLimitados = data.slice(0, 3);
-            
+             
             productosLimitados.forEach(producto => {
                 let productoHTML = `
                 <div class="col-md-4 mb-3">

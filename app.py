@@ -10,10 +10,15 @@ api = Api(app)
 def cargar_productos():
     with open('data/productos.json', 'r', encoding='utf-8') as file:
         return json.load(file)
+# def cargar_usuarios():
+#     with open('data/usuarios.json', 'uc', encoding='utf-8') as file:
+#         return json.load(file)
 
 # Rutas de la API
 api.add_resource(ProductoListResource, '/api/productos')
 api.add_resource(ProductoResource, '/api/productos/<int:id>')
+# api.add_resource(ProductoListResource, '/api/usuarios')
+# api.add_resource(ProductoResource, '/api/usuarios/<int:id>')
 
 # Rutas para las páginas HTML
 @app.route('/')
@@ -39,6 +44,10 @@ def login():
 @app.route('/registro')
 def registro():
     return render_template('registro.html')
+
+@app.route('/producto')
+def producto():
+    return render_template('producto.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
