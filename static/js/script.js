@@ -10,12 +10,9 @@ $(document).ready(function () {
         var email = $('#email').val().trim();
         var address = $('#address').val().trim();
 
-        // Realiza las validaciones
-        if (nombre === '') {
-            alert('Por favor, ingresa tu nombre.');
-            return;
-        }
 
+        // Realiza las validaciones
+     
         if (telefono === '') {
             alert('Por favor, ingresa tu número de teléfono.');
             return;
