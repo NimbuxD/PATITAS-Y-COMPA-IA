@@ -1,14 +1,24 @@
--instalar python y seleccionar casilla "Add python.exe to PATH"
+Instrucciones para Configurar y Ejecutar el Proyecto
 
--luego en una consola poner 
-"pip install Flask Flask-RESTful"
+1. Instalar Python:
+   - Descarga e instala Python desde [python.org](https://www.python.org/downloads/).
+   - Durante la instalación, asegúrate de seleccionar la casilla "Add python.exe to PATH" para que Python se agregue a la variable de entorno `PATH`.
 
--Dentro de la carpeta del proyecto utilizar terminal y ejecutar con comando: 
-"python app.py" 
+2. Instalar Flask y Flask-RESTful:
+   - Abre una consola (símbolo del sistema, PowerShell, o terminal).
+   - Ejecuta el siguiente comando para instalar Flask y Flask-RESTful:
 
+     pip install Flask Flask-RESTful
 
--luego podrá entrar en 
+3. Ejecutar la Aplicación:
+   - Navega a la carpeta del proyecto en la terminal.
+   - Ejecuta la aplicación con el siguiente comando:
 
-http://127.0.0.1:5000
+     python app.py
 
-y listo!
+4. Acceder a la Aplicación:
+   - Abre un navegador web y ve a la siguiente dirección:
+
+     http://127.0.0.1:5000
+   
+   - ¡Y listo! Tu aplicación debería estar corriendo.
