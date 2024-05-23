@@ -14,53 +14,7 @@
 <body>
     <!-- HEADER -->
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark flex-wrap">
-            <div class="container">
-                <a class="navbar-brand" href="/"><img class="img-fluid" src="../static/img/logo.png" alt="" width="40px">Patitas y Compañía</a>
-
-                <!-- Botón para dispositivos móviles -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/productos">Productos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/contacto">Contacto</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/perfil">Perfil</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link d-block d-sm-none d-md-block d-lg-none" href="/login">Iniciar
-                                Sesion</a>
-                        </li>
-                        <li class="nav-item">
-                            <button type="button" class="btn d-block d-sm-none d-md-block d-lg-none"
-                                data-bs-toggle="modal" data-bs-target="#myModal">
-                                <span title="Carrito" class="material-symbols-outlined text-white">
-                                    shopping_cart
-                                </span>
-                            </button>
-                        </li>
-                    </ul>
-                </div>
-                <!-- Inicio sesion -->
-                <a class="text-white text-decoration-none h5 pe-2 border-end border-white d-none d-sm-block d-md-none d-lg-block"
-                    href="/login">Iniciar Sesion</a>
-                <!-- Carrito -->
-                <button type="button" class="btn d-none d-sm-block d-md-none d-lg-block" data-bs-toggle="modal"
-                    data-bs-target="#myModal">
-                    <span title="Carrito" class="material-symbols-outlined text-white">
-                        shopping_cart
-                    </span>
-                </button>
-            </div>
-        </nav>
+        {% include 'navbar.html' %}
         <div class="modal" id="myModal">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -74,7 +28,8 @@
                     <!-- Modal body -->
                     <div class="modal-body">
                         <div class="card p-2">
-                            <div class="d-flex justify-content-center"><img src="../static/img/bandana.webp" alt="bandana" width="100px"></div>
+                            <div class="d-flex justify-content-center"><img src="../static/img/bandana.webp"
+                                    alt="bandana" width="100px"></div>
                             <div class="row container d-flex justify-content-center mx-0">
                                 <div class="col-12 text-center fw-bold">bandana</div>
                                 <div class="col-6">Precio transferencias</div>
@@ -129,16 +84,16 @@
 
     </main>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             // Función para cargar productos
             function loadProducts() {
                 $.ajax({
                     url: 'js/producto.js', // Cambia esta URL a tu API real
                     type: 'GET',
-                    success: function(products) {
+                    success: function (products) {
                         let productContainer = $('.row');
                         productContainer.empty(); // Vaciar el contenedor antes de añadir nuevos productos
-                        products.forEach(function(product) {
+                        products.forEach(function (product) {
                             let productCard = `
                                 <div class="col-md-4 mb-3">
                                     <div class="card">
@@ -155,17 +110,17 @@
                             productContainer.append(productCard);
                         });
                     },
-                    error: function(error) {
+                    error: function (error) {
                         console.error('Error al cargar los productos:', error);
                     }
                 });
             }
-    
+
             // Llamar a la función para cargar productos al cargar la página
             loadProducts();
-    
+
             // Evento para agregar al carrito
-            $(document).on('click', '.btn-primary', function(e) {
+            $(document).on('click', '.btn-primary', function (e) {
                 e.preventDefault();
                 let productId = $(this).data('id');
                 // Lógica para agregar el producto al carrito
@@ -173,7 +128,7 @@
             });
         });
     </script>
-    
+
     <!-- FOOTER -->
     <footer class="bg-dark py-4">
         <div class="container">

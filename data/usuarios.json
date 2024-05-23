@@ -1,3 +1,16 @@
 [
-    {"id": 1, "nombreCompleto": "Pedrito Infante", "telefono": "+56912345678", "correo": "correo@prueba.cl"}
+    {
+        "nombre": "Luis Illanes",
+        "email": "illanesluis18@gmail.com",
+        "password": "Pavilion64$",
+        "telefono": "+56999078536",
+        "direccion": "Av lo ovalle 1514"
+    },
+    {
+        "nombre": "katherine Hermosilla",
+        "email": "correo@prueba.cl",
+        "password": "Contraseña123",
+        "telefono": "",
+        "direccion": ""
+    }
 ]
