@@ -16,8 +16,8 @@ document.addEventListener('DOMContentLoaded', function () {
                             <h5 class="card-title fw-bold">${producto.nombre}</h5>
                             <p class="card-text">${producto.descripcion}</p>
                             <p class="card-text"><strong>$${producto.precio}</strong></p>
-                            <button type="button" class="btn btn-primary add-to-cart" data-id="${producto.id}" data-name="${producto.nombre}" data-price="${producto.precio}">
-                                Agregar al Carrito
+                            <button type="button" class="btn btn-primary add-to-cart" onclick="window.location.href='/producto/${producto.id}'">
+                                Ver más
                             </button>
                         </div>
                     </div>
@@ -48,8 +48,8 @@ document.addEventListener('DOMContentLoaded', function () {
                             <h5 class="card-title fw-bold">${producto.nombre}</h5>
                             <p class="card-text">${producto.descripcion}</p>
                             <p class="card-text"><strong>$${producto.precio}</strong></p>
-                            <button type="button" class="btn btn-primary add-to-cart" data-id="${producto.id}" data-name="${producto.nombre}" data-price="${producto.precio}" data-foto="${producto.foto}">
-                                Agregar al Carrito
+                            <button type="button" class="btn btn-primary add-to-cart" onclick="window.location.href='/producto/${producto.id}'">
+                                Ver más
                             </button>
                         </div>
                     </div>
