@@ -144,7 +144,7 @@
                                         </div>
                                         <div class="mb-3">
                                             <label for="telefono" class="form-label fw-bold">Teléfono</label>
-                                            <input type="text" class="form-control border-custom" id="telefono"
+                                            <input type="number" class="form-control border-custom" id="telefono"
                                                 placeholder="Introduce tu teléfono" required>
 
                                         </div>
@@ -199,6 +199,29 @@
         })()
 
 
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $(".needs-validation").submit(function (event) {
+                // Evitar que el formulario se envíe automáticamente
+                
+
+                // Realiza las validaciones
+
+                var telefono = $("#telefono").val();
+
+                // Telefono: largo entre 9 y 12 caracteres
+                if (telefono.length < 9 || telefono.length > 12) {
+                    alert("El telefono debe tener entre 9 y 12 caracteres.");
+                    return;
+                }
+
+                // Si todas las validaciones pasan, se puede enviar el formulario
+                alert("¡Registro exitoso!");
+
+            });
+        });
     </script>
 </body>
 
