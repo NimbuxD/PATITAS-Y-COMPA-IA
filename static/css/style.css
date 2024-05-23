@@ -7,19 +7,19 @@ body {
     background-image: url('../img/fondo_decoracion.png');
 }
 
-/* .producto {
-    border: 1px solid #ccc;
-    padding: 16px;
-    margin: 16px;
-    border-radius: 8px;
-    text-align: center;
+.custom-card {
+    margin-top: 20px;
 }
-
-.producto img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-} */
+.custom-tabs {
+    margin-bottom: -1px;
+    z-index: 1;
+    position: relative;
+}
+.tab-content {
+    padding: 20px;
+    background-image: url('../img/4.png');
+    border-radius: 0 0 5px 5px;
+}
 
 .fondo{
     background-image: url('../img/4.png');
