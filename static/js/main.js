@@ -5,10 +5,12 @@ document.addEventListener('DOMContentLoaded', function () {
             let productosContainer = document.getElementById('productos');
             productosContainer.innerHTML = '';
             data.forEach(producto => {
+                let descuento = producto.precio * 0.05;
+                let precioConDescuento = producto.precio - descuento;
                 let productoHTML = `
                 <div class="col-md-4 mb-3">
                     <div class="card fondo border-custom">
-                        <a href="HTML/productos/${producto.nombre.toLowerCase()}.html"><img src="${producto.foto}" class="card-img-top p-4"
+                        <a href="/producto/${producto.id}"><img src="${producto.foto}" class="card-img-top p-4"
                                 alt="${producto.nombre} para Mascotas"></a>
                         <div class="card-body container">
                             <h5 class="card-title fw-bold">${producto.nombre}</h5>
@@ -40,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 let productoHTML = `
                 <div class="col-md-4 mb-3">
                     <div class="card fondo border-custom">
-                        <a href="HTML/productos/${producto.nombre.toLowerCase()}.html"><img src="${producto.foto}" class="card-img-top p-4"
+                        <a href="/producto/${producto.id}"><img src="${producto.foto}" class="card-img-top p-4"
                                 alt="${producto.nombre} para Mascotas"></a>
                         <div class="card-body container">
                             <h5 class="card-title fw-bold">${producto.nombre}</h5>

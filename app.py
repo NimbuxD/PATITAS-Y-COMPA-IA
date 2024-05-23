@@ -2,6 +2,7 @@ from flask import Flask, render_template, jsonify, request, session
 from flask_restful import Api
 from resources import ProductoResource, ProductoListResource
 import json
+import os
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
 api = Api(app)
@@ -11,15 +12,10 @@ app.secret_key = 'supersecretkey'
 def cargar_productos():
     with open('data/productos.json', 'r', encoding='utf-8') as file:
         return json.load(file)
-# def cargar_usuarios():
-#     with open('data/usuarios.json', 'uc', encoding='utf-8') as file:
-#         return json.load(file)
 
 # Rutas de la API
 api.add_resource(ProductoListResource, '/api/productos')
 api.add_resource(ProductoResource, '/api/productos/<int:id>')
-# api.add_resource(ProductoListResource, '/api/usuarios')
-# api.add_resource(ProductoResource, '/api/usuarios/<int:id>')
 
 # Rutas para las páginas HTML
 @app.route('/')
@@ -46,9 +42,22 @@ def login():
 def registro():
     return render_template('registro.html')
 
-@app.route('/producto')
-def producto():
-    return render_template('producto.html')
+# @app.route('/producto')
+# def producto():
+#     return render_template('producto.html')
+
+
+@app.route('/producto/<int:product_id>')
+def producto(product_id):
+    productos = cargar_productos()
+    producto = next((item for item in productos if item['id'] == product_id), None)
+    if producto:
+        # Calcular el precio con descuento
+        descuento = producto['precio'] * 0.05
+        precio_con_descuento = int(producto['precio'] - descuento)
+        return render_template('producto.html', product=producto, precio_con_descuento=precio_con_descuento)
+    else:
+        return "Producto no encontrado", 404
 
 @app.route('/add_to_cart', methods=['POST'])
 def add_to_cart():

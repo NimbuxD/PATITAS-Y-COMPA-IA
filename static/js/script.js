@@ -11,11 +11,6 @@ $(document).ready(function () {
         var address = $('#address').val().trim();
 
         // Realiza las validaciones
-        if (nombre === '') {
-            alert('Por favor, ingresa tu nombre.');
-            return;
-        }
-
         if (telefono === '') {
             alert('Por favor, ingresa tu número de teléfono.');
             return;
