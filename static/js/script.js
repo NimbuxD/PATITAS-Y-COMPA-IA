@@ -106,7 +106,7 @@ $(document).ready(function () {
                 success: function(response) {
                     alert(response.message);
                     if (response.message === 'Usuario registrado con éxito') {
-                        // Redirigir al usuario a la página de inicio de sesión o donde desees
+                        // Redirigir al usuario a la página de inicio de sesión
                         window.location.href = '/login';
                     }
                 },

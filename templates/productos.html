@@ -78,7 +78,6 @@
         <div class="container mt-5">
             <h2 class="mb-4">Productos</h2>
             <div class="row" id="productos">
-                <!-- Los productos se cargarán aquí dinámicamente desde la API -->
             </div>
         </div>
 
@@ -88,11 +87,11 @@
             // Función para cargar productos
             function loadProducts() {
                 $.ajax({
-                    url: 'js/producto.js', // Cambia esta URL a tu API real
+                    url: 'js/producto.js', 
                     type: 'GET',
                     success: function (products) {
                         let productContainer = $('.row');
-                        productContainer.empty(); // Vaciar el contenedor antes de añadir nuevos productos
+                        productContainer.empty();
                         products.forEach(function (product) {
                             let productCard = `
                                 <div class="col-md-4 mb-3">

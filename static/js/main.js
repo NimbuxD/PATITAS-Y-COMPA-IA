@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const productPrice = this.getAttribute('data-price');
                 const productFoto = this.getAttribute('data-foto');
 
-                console.log(`Agregando al carrito: ID=${productId}, Nombre=${productName}, Precio=${productPrice}, Foto=${productFoto}`); // Log para depuración
+                console.log(`Agregando al carrito: ID=${productId}, Nombre=${productName}, Precio=${productPrice}, Foto=${productFoto}`); 
 
                 fetch('/add_to_cart', {
                     method: 'POST',
@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 })
                     .then(response => response.json())
                     .then(data => {
-                        console.log('Respuesta del servidor:', data); // Log para depuración
+                        console.log('Respuesta del servidor:', data); 
                         updateCart();
                     })
                     .catch(error => console.error('Error al agregar producto al carrito:', error));

@@ -135,7 +135,7 @@ def producto(product_id):
 @app.route('/add_to_cart', methods=['POST'])
 def add_to_cart():
     data = request.json
-    print(f"Datos recibidos: {data}")  # Log para depuración
+    print(f"Datos recibidos: {data}")
     product_id = data['product_id']
     product_name = data['product_name']
     product_price = data['product_price']
@@ -150,7 +150,7 @@ def add_to_cart():
         'product_price': product_price,
         'product_foto': product_foto
     })
-    print(f"Carrito actualizado: {session['cart']}")  # Log para depuración
+    print(f"Carrito actualizado: {session['cart']}")  
     return jsonify({'message': 'Product added to cart', 'cart': session['cart']})
 
 @app.route('/get_cart', methods=['GET'])
