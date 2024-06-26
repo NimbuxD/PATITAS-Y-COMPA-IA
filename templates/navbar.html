@@ -43,3 +43,58 @@
         </button>
     </div>
 </nav>
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="textlila fw-bold modal-title">Resumen</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="">
+                    <div class="card p-2">
+                        <div class="d-flex justify-content-center"><img src="../static/img/bandana.webp" alt="bandana"
+                                width="100px"></div>
+                        <div class="row container d-flex justify-content-center mx-0">
+                            <div class="col-12 text-center fw-bold">bandana</div>
+                            <div class="col-6">Precio transferencias</div>
+                            <div class="col-6 textlila text-center fw-bold">$5.000</div>
+                            <div class="col-6">Otros medios de pago</div>
+                            <div class="col-6 text-center fw-bold">$5.000</div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row container d-flex justify-content-center mx-0">
+                        <div class="col-6">
+                            <div class="fw-bold">Pago con transferencias</div>
+                            <div class="textgreysecond">Transferencia y Banco Estado</div>
+                        </div>
+                        <span class="col-6 textlila fw-bold text-center">$5.000</span>
+                        <div class="col-6">
+                            <div>Otros medios de pago</div>
+                            <div class="textgreysecond">Webpay/Onepay</div>
+                        </div>
+                        <span class="col-6 text-center">$5.000</span>
+                        <div class="textgrey col-6 fw-bold">Envío</div>
+                        <span class="textgrey col-6 fw-bold text-center">-</span>
+                    </div>
+                    <hr>
+                    <div class="row container d-flex justify-content-center mx-0">
+                        <div class="col-6">
+                            <div class="textgrey fw-bold">TOTAL</div>
+                        </div>
+                        <span class="textgrey col-6 text-center fw-bold">-</span>
+                    </div>
+                    <span id="totalPrice" class="textgrey col-6 text-center fw-bold"></span>
+                </div>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button class="col btn btn-primary">Ir al carro</button>
+                <button class="col btn btn-success">Iniciar pago</button>
+            </div>
+        </div>
+    </div>
+</div>        
