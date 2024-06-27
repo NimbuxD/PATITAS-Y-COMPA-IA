@@ -1,0 +1,12 @@
+{% extends 'patitasYCompania/base.html' %}
+{% block title %}Formulario de Producto{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <h1>Formulario de Producto</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+</div>
+{% endblock %}
