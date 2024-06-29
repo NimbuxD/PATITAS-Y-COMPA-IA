@@ -183,11 +183,11 @@ def cart(request):
         descuento = Decimal(0)
         total_con_descuento = total_iva
 
-    subtotal = subtotal.quantize(Decimal('1'), rounding=ROUND_HALF_UP)
-    iva = iva.quantize(Decimal('1'), rounding=ROUND_HALF_UP)
-    total_iva = total_iva.quantize(Decimal('1'), rounding=ROUND_HALF_UP)
-    total_con_descuento = total_con_descuento.quantize(Decimal('1'), rounding=ROUND_HALF_UP)
-    descuento = descuento.quantize(Decimal('1'), rounding=ROUND_HALF_UP)
+    # subtotal = subtotal.quantize(Decimal('1'), rounding=ROUND_HALF_UP)
+    # iva = iva.quantize(Decimal('1'), rounding=ROUND_HALF_UP)
+    # total_iva = total_iva.quantize(Decimal('1'), rounding=ROUND_HALF_UP)
+    # total_con_descuento = total_con_descuento.quantize(Decimal('1'), rounding=ROUND_HALF_UP)
+    # descuento = descuento.quantize(Decimal('1'), rounding=ROUND_HALF_UP)
 
     return render(request, 'patitasYCompania/cart.html', {
         'cart_items': cart_items,
