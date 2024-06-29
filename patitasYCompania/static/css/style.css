@@ -96,6 +96,14 @@ footer p {
     margin-bottom: 20px;
 }
 
+.container{
+    color: lightblue;
+}
+
+.color_celeste{
+    background-color: lightblue;
+}
+
 input {
     border-radius: 5px;
     padding: 10px;
@@ -112,6 +120,7 @@ h3 {
     font-size: 2em;
     color: #333;
 }
+
 
 
 
