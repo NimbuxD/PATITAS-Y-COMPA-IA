@@ -23,6 +23,9 @@ def index(request):
 def success(request):
     return render(request, 'patitasYCompania/success.html')
 
+def success_compra(request):
+    return render(request, 'patitasYCompania/success_compra.html')
+
 # Vistas de Autenticación
 def registro(request):
     if request.method == 'POST':
@@ -96,6 +99,7 @@ def user_profile(request):
         user.save()
         user.profile.save()
         messages.success(request, 'Perfil actualizado correctamente.')
+        return redirect('user_profile')
     return render(request, 'patitasYCompania/perfil.html', {'usuario': user})
 
 @login_required
@@ -183,9 +187,9 @@ def cart(request):
         descuento = Decimal(0)
         total_con_descuento = total_iva
 
-    subtotal = subtotal.quantize(Decimal('1'), rounding=ROUND_HALF_UP)
+    # subtotal = subtotal.quantize(Decimal('1'), rounding=ROUND_HALF_UP)
     iva = iva.quantize(Decimal('1'), rounding=ROUND_HALF_UP)
-    total_iva = total_iva.quantize(Decimal('1'), rounding=ROUND_HALF_UP)
+    # total_iva = total_iva.quantize(Decimal('1'), rounding=ROUND_HALF_UP)
     total_con_descuento = total_con_descuento.quantize(Decimal('1'), rounding=ROUND_HALF_UP)
     descuento = descuento.quantize(Decimal('1'), rounding=ROUND_HALF_UP)
 
@@ -265,7 +269,7 @@ def checkout(request):
         # Vaciar el carrito después del pago
         cart_items.delete()
 
-        return redirect('success')
+        return redirect('success_compra')
 
     return render(request, 'patitasYCompania/checkout.html')
 
