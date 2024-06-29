@@ -5,11 +5,16 @@
 {% block content %}
 <div class="container mt-5">
     <h2 class="mb-4">Productos</h2>
+
+    {% if user.is_authenticated and user.is_staff %}
+    <a href="{% url 'product_create' %}" class="btn btn-success mb-4">Agregar Producto</a>
+    {% endif %}
+
     <div class="row" id="productos">
         {% for product in products %}
         <div class="col-md-4">
             <div class="card mb-4">
-                <img src="{{ product.imagen.url }}" class="card-img-top" alt="{{ product.nombre }}">
+                <img src="{{ product.foto.url }}" class="card-img-top" alt="{{ product.nombre }}">
                 <div class="card-body">
                     <h5 class="card-title">{{ product.nombre }}</h5>
                     <p class="card-text">{{ product.descripcion|truncatewords:20 }}</p>
