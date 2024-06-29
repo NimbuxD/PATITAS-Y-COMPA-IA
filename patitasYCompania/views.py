@@ -6,10 +6,13 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group, User
+
+from Prueba.settings import EMAIL_HOST_USER
 from .models import Producto, Profile, CartItem
 from .forms import ContactForm, LoginForm, ProductoForm, RegistroUsuarioForm
 import json
 from django.core.mail import EmailMessage 
+from django.core.mail import send_mail
 
 
 # Vistas de la Página Principal
@@ -31,14 +34,29 @@ def registro(request):
             
             cliente_group, created = Group.objects.get_or_create(name='Cliente')
             user.groups.add(cliente_group)
-            
-            send_mail(
+
+            body = f"""
+            <html>
+            <body style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;">
+                <div style="max-width: 600px; margin: auto; background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                    <h2 style="color: #333;">¡Bienvenido a Patitas y Compañía, {user.username}!</h2>
+                    <p style="color: #555;">Gracias por registrarte en nuestra tienda. Nos alegra que formes parte de nuestra comunidad de amantes de las mascotas.</p>
+                    <p style="color: #555;">Como agradecimiento, te ofrecemos un <strong>30% de descuento</strong> en tu primera compra. ¡No te lo pierdas!</p>
+                    <p style="color: #555;">Si tienes alguna pregunta, no dudes en contactarnos. ¡Estamos aquí para ayudarte!</p>
+                    <p style="color: #777; font-size: 0.9em;">&copy; 2024 Patitas y Compañía</p>
+                </div>
+            </body>
+            </html>
+            """
+
+            email = EmailMessage(
                 'Registro Exitoso en Patitas y Compañía',
-                f'Bienvenido {user.username}, tiene un 30% de descuento en la primera compra de la tienda.',
-                'patitasycompania@gmail.com',
-                [user.email],
-                fail_silently=False,
+                body,
+                EMAIL_HOST_USER,
+                [user.email]
             )
+            email.content_subtype = 'html'
+            email.send(fail_silently=False)
             
             auth_login(request, user)
             messages.success(request, "Registro exitoso. Bienvenido a Patitas y Compañía.")
@@ -154,9 +172,9 @@ def add_to_cart(request, product_id):
 @login_required
 def cart(request):
     cart_items = CartItem.objects.filter(user=request.user)
-    total = sum(item.producto.precio * item.quantity for item in cart_items)
-    iva = total * Decimal(0.19)
-    total_iva = total + iva
+    subtotal = sum(item.producto.precio * item.quantity for item in cart_items)
+    iva = subtotal * Decimal(0.19)
+    total_iva = subtotal
 
     if not request.user.profile.has_purchased:
         descuento = total_iva * Decimal(0.30)
@@ -165,18 +183,21 @@ def cart(request):
         descuento = Decimal(0)
         total_con_descuento = total_iva
 
-    total_iva = total_iva.quantize(Decimal('1'), rounding=ROUND_HALF_UP)
+    subtotal = subtotal.quantize(Decimal('1'), rounding=ROUND_HALF_UP)
     iva = iva.quantize(Decimal('1'), rounding=ROUND_HALF_UP)
+    total_iva = total_iva.quantize(Decimal('1'), rounding=ROUND_HALF_UP)
     total_con_descuento = total_con_descuento.quantize(Decimal('1'), rounding=ROUND_HALF_UP)
     descuento = descuento.quantize(Decimal('1'), rounding=ROUND_HALF_UP)
 
     return render(request, 'patitasYCompania/cart.html', {
         'cart_items': cart_items,
-        'total': total_iva,
+        'subtotal': subtotal,
+        'total_iva': total_iva,
         'iva': iva,
         'descuento': descuento,
         'total_con_descuento': total_con_descuento,
     })
+
 
 @login_required
 def update_cart(request, item_id, action):
@@ -204,29 +225,40 @@ def clear_cart(request):
 @login_required
 def checkout(request):
     if request.method == 'POST':
-        card_number = request.POST.get('card_number')
-        expiry_date = request.POST.get('expiry_date')
-        cvv = request.POST.get('cvv')
-        name_on_card = request.POST.get('name_on_card')
-        
-        # Aquí puedes agregar la lógica para procesar el pago
-        # como conectarte a un gateway de pago
-        
-        # Simulación de un pago exitoso
-        messages.success(request, "Pago realizado con éxito.")
-        request.user.profile.has_purchased = True
-        request.user.profile.save()
+        # Procesamiento del pago (omitido)
 
-        # Enviar correo con el detalle de la compra
         cart_items = CartItem.objects.filter(user=request.user)
-        total = sum(item.producto.precio * item.quantity for item in cart_items)
-        product_details = "\n".join([f"{item.quantity} x {item.producto.nombre} - ${item.producto.precio}" for item in cart_items])
+        subtotal = sum(item.producto.precio * item.quantity for item in cart_items)
+        iva = subtotal * Decimal(0.19)
+        total_iva = subtotal
+
+        if not request.user.profile.has_purchased:
+            descuento = total_iva * Decimal(0.30)
+            total_con_descuento = total_iva - descuento
+            request.user.profile.has_purchased = True  # Actualiza después de la primera compra
+            request.user.profile.save()
+        else:
+            descuento = Decimal(0)
+            total_con_descuento = total_iva
+
+        total_con_descuento = total_con_descuento.quantize(Decimal('1'), rounding=ROUND_HALF_UP)
+
+        email_body = f"""
+        <h2>Gracias por tu compra en Patitas y Compañía, {request.user.username}!</h2>
+        <p>Aquí tienes el detalle de tus productos:</p>
+        <ul>
+            {''.join([f"<li>{item.quantity} x {item.producto.nombre} - ${item.producto.precio}</li>" for item in cart_items])}
+        </ul>
+        <p><strong>Total a pagar: ${total_con_descuento}</strong></p>
+        <p>© 2024 Patitas y Compañía</p>
+        """
 
         send_mail(
             'Gracias por tu compra en Patitas y Compañía',
-            f'Hola {request.user.username},\n\nGracias por tu compra. Aquí tienes el detalle de los productos:\n\n{product_details}\n\nTotal: ${total}\n\n¡Esperamos verte pronto!',
-            'patitasycompania@gmail.com',
+            '',
+            EMAIL_HOST_USER,
             [request.user.email],
+            html_message=email_body,
             fail_silently=False,
         )
 
@@ -234,8 +266,9 @@ def checkout(request):
         cart_items.delete()
 
         return redirect('success')
-    
+
     return render(request, 'patitasYCompania/checkout.html')
+
 
 
 # Vistas de Prueba de Envío de Correo
@@ -244,7 +277,7 @@ def test_email(request):
         send_mail(
             'Prueba de Envío de Correo',
             'Este es un correo de prueba.',
-            'patitasycompania@gmail.com',
+            EMAIL_HOST_USER,
             ['destinatario@example.com'],
             fail_silently=False,
         )
@@ -255,12 +288,42 @@ def test_email(request):
 # Funciones Auxiliares
 def enviar_correo_contacto(data):
     try:
-        send_mail(
-            'Nuevo mensaje de contacto',
-            f'Nombre: {data.get("nombre")}\nTeléfono: {data.get("telefono")}\nCorreo electrónico: {data.get("email")}\nMensaje:\n{data.get("mensaje")}',
-            'patitasycompania@gmail.com',
-            ['illanesluis18@gmail.com'],
-            fail_silently=False,
+        subject = 'Nuevo mensaje de contacto'
+        body = f"""
+        <html>
+        <body style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;">
+            <div style="max-width: 600px; margin: auto; background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                <h2 style="color: #333;">Nuevo Mensaje de Contacto</h2>
+                <p style="color: #555;">Has recibido un nuevo mensaje de contacto en Patitas y Compañía.</p>
+                <table style="width: 100%; border-collapse: collapse;">
+                    <tr>
+                        <td style="padding: 8px; border: 1px solid #ddd;">Nombre:</td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">{data.get("nombre")}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px; border: 1px solid #ddd;">Teléfono:</td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">{data.get("telefono")}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px; border: 1px solid #ddd;">Correo Electrónico:</td>
+                        <td style="padding: 8px; border: 1px solid #ddd;">{data.get("email")}</td>
+                    </tr>
+                </table>
+                <p style="color: #555; margin-top: 20px;">Gracias por usar nuestro servicio.</p>
+                <p style="color: #777; font-size: 0.9em;">&copy; 2024 Patitas y Compañía</p>
+            </div>
+        </body>
+        </html>
+        """
+        
+        email = EmailMessage(
+            subject,
+            body,
+            EMAIL_HOST_USER,
+            ['illanesluis18@gmail.com']
         )
+        email.content_subtype = 'html'
+        email.send(fail_silently=False)
+        
     except Exception as e:
         print(f"Error al enviar el correo: {e}")

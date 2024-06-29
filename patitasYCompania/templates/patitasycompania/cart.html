@@ -43,12 +43,14 @@
         </tbody>
     </table>
     <div class="mt-4">
-        <p><strong>Total (IVA incluido):</strong> ${{ total }}</p>
-        {% if descuento > 0 %}
-        <p><small>(30% de descuento aplicado: -${{ descuento }})</small></p>
-        {% endif %}
-        <p><strong>Total a pagar:</strong> ${{ total_con_descuento }}</p>
+        <p><strong>Total (IVA incluido):</strong> ${{ subtotal }}</p>
         <p><small>(19% IVA: ${{ iva }})</small></p>
+        <p><strong>Total a pagar:</strong> ${{ total_con_descuento }}</p>
+        {% if descuento > 0 %}
+            <p>(30% de descuento aplicado: -${{ descuento }})</p>
+        {% endif %}
+        
+
         <a href="{% url 'clear_cart' %}" class="btn btn-warning">Vaciar Carrito</a>
         <a href="{% url 'checkout' %}" class="btn btn-success">Comprar</a>
 

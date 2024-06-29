@@ -4,11 +4,11 @@
 
 {% block content %}
 <div class="container mt-5">
-    <div class="row">
-        <div class="col-md-6 offset-md-3">
-            <div class="card">
-                <div class="card-body">
-                    <h3 class="text-center">Contacto</h3>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg">
+                <div class="card-body p-5">
+                    <h3 class="text-center mb-4">Contacto</h3>
                     {% if form.errors %}
                         <div class="alert alert-danger">
                             <ul>
@@ -23,11 +23,11 @@
                             </ul>
                         </div>
                     {% endif %}
-                    <form method="post">
+                    <form method="post" class="form-group">
                         {% csrf_token %}
                         {{ form.as_p }}
                         <div class="d-flex justify-content-center">
-                            <button type="submit" class="btn btn-primary">Enviar</button>
+                            <button type="submit" class="btn btn-primary btn-lg mt-3">Enviar</button>
                         </div>
                     </form>
                 </div>
