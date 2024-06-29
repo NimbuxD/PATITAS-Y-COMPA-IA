@@ -12,24 +12,20 @@
                     <form method="post" action="{% url 'registro' %}">
                         {% csrf_token %}
                         <div class="mb-3">
+                            <label for="username" class="form-label">Nombre de Usuario</label>
+                            <input type="text" class="form-control" id="username" name="username" placeholder="Nombre de usuario" required>
+                        </div>
+                        <div class="mb-3">
                             <label for="email" class="form-label">Correo Electrónico</label>
                             <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña" required>
                         </div>
                         <div class="mb-3">
                             <label for="password_confirm" class="form-label">Confirmar Contraseña</label>
-                            <input type="password" class="form-control" id="password_confirm" name="password_confirm" placeholder="Confirm Password" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="telefono" class="form-label">Teléfono</label>
-                            <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Teléfono">
-                        </div>
-                        <div class="mb-3">
-                            <label for="direccion" class="form-label">Dirección</label>
-                            <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Dirección">
+                            <input type="password" class="form-control" id="password_confirm" name="password_confirm" placeholder="Confirmar contraseña" required>
                         </div>
                         <div class="d-flex justify-content-center">
                             <button type="submit" class="btn btn-primary">Registrarse</button>

@@ -1,5 +1,7 @@
 from django.db import models
-from django.contrib.auth.hashers import make_password
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 class Producto(models.Model):
     nombre = models.CharField(max_length=100)
@@ -10,17 +12,22 @@ class Producto(models.Model):
     def __str__(self):
         return self.nombre
 
-class Usuario(models.Model):
-    email = models.EmailField(unique=True)
-    password = models.CharField(max_length=128)
-    telefono = models.CharField(max_length=15, blank=True, null=True)
-    direccion = models.CharField(max_length=255, blank=True, null=True)
+class CartItem(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
 
     def __str__(self):
-        return self.email
+        return f"{self.quantity} x {self.producto.nombre}"
 
-    def set_password(self, raw_password):
-        self.password = make_password(raw_password)
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    telefono = models.CharField(max_length=15, blank=True, null=True)
+    direccion = models.CharField(max_length=255, blank=True, null=True)
+    has_purchased = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.user.username
 
 class ContactMessage(models.Model):
     nombre = models.CharField(max_length=100)
@@ -31,3 +38,12 @@ class ContactMessage(models.Model):
 
     def __str__(self):
         return self.nombre
+
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()

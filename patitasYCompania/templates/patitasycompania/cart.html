@@ -1,0 +1,60 @@
+{% extends 'patitasYCompania/base.html' %}
+{% load custom_filters %}
+
+{% block title %}Carrito de Compras{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Carrito de Compras</h2>
+    {% if cart_items %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Foto</th>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Total</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart_items %}
+            <tr>
+                <td><img src="{{ item.producto.foto.url }}" alt="{{ item.producto.nombre }}" width="50"></td>
+                <td>{{ item.producto.nombre }}</td>
+                <td>
+                    <button class="btn btn-secondary btn-sm"
+                        onclick="updateCart('{{ item.id }}', 'decrement')">-</button>
+                    {{ item.quantity }}
+                    <button class="btn btn-secondary btn-sm"
+                        onclick="updateCart('{{ item.id }}', 'increment')">+</button>
+                </td>
+                <td>${{ item.producto.precio }}</td>
+                <td>${{ item.quantity|multiply:item.producto.precio }}</td>
+                <td>
+                    <form method="post" action="{% url 'remove_from_cart' item.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="mt-4">
+        <p><strong>Total (IVA incluido):</strong> ${{ total }}</p>
+        {% if descuento > 0 %}
+        <p><small>(30% de descuento aplicado: -${{ descuento }})</small></p>
+        {% endif %}
+        <p><strong>Total a pagar:</strong> ${{ total_con_descuento }}</p>
+        <p><small>(19% IVA: ${{ iva }})</small></p>
+        <a href="{% url 'clear_cart' %}" class="btn btn-warning">Vaciar Carrito</a>
+        <a href="{% url 'checkout' %}" class="btn btn-success">Comprar</a>
+
+    </div>
+    {% else %}
+    <p>No hay productos en tu carrito.</p>
+    {% endif %}
+</div>
+{% endblock %}

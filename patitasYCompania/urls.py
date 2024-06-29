@@ -16,6 +16,13 @@ urlpatterns = [
     path('login/', views.user_login, name='login'),
     path('perfil/', views.user_profile, name='user_profile'),
     path('logout/', views.user_logout, name='logout'),
+    path('delete_user/', views.delete_user, name='delete_user'),
+    path('cart/', views.cart, name='cart'),
+    path('update_cart/<int:item_id>/<str:action>/', views.update_cart, name='update_cart'),
+    path('add_to_cart/<int:product_id>/', views.add_to_cart, name='add_to_cart'),
+    path('remove_from_cart/<int:item_id>/', views.remove_from_cart, name='remove_from_cart'),
+    path('clear_cart/', views.clear_cart, name='clear_cart'),
+    path('checkout/', views.checkout, name='checkout'),
 ] 
 
 if settings.DEBUG:
