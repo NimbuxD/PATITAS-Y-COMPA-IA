@@ -5,6 +5,8 @@ from django.contrib.auth.decorators import login_required
 from .models import Producto, Usuario
 from .forms import ProductoForm, UsuarioForm
 import json
+from django.core.mail import EmailMessage 
+
 
 def index(request):
     return render(request, 'patitasYCompania/index.html')
@@ -12,7 +14,7 @@ def index(request):
 def product_list(request):
     products = Producto.objects.all()
     return render(request, 'patitasYCompania/productos.html', {'products': products})
-
+ 
 def product_detail(request, product_id):
     product = get_object_or_404(Producto, id=product_id)
     return render(request, 'patitasYCompania/producto.html', {'product': product})
