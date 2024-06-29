@@ -1,5 +1,14 @@
 PASOS A SEGUIR
 - abrir una nueva terminal 
 - activar entorno virtual
+- Instalar Django
+  pip install Django
+- instalar 
+ pip install python-dotenv
+ pip -m pip install Pillow
+ 
+- hacer las migraciones 
+- makemigrations
+- migrate
 - correr el servidor
 - efectuar los cambios necesarios
