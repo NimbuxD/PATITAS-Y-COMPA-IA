@@ -1,4 +1,4 @@
-from decimal import Decimal, ROUND_HALF_UP
+from decimal import Decimal, ROUND_DOWN, ROUND_HALF_UP
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.mail import send_mail
 from django.http import HttpResponse, JsonResponse
@@ -173,25 +173,27 @@ def add_to_cart(request, product_id):
     messages.success(request, f'¡{producto.nombre} ha sido añadido al carrito!')
     return redirect('cart')
 
+
+
 @login_required
 def cart(request):
     cart_items = CartItem.objects.filter(user=request.user)
-    subtotal = sum(item.producto.precio * item.quantity for item in cart_items)
-    iva = subtotal * Decimal(0.19)
+    subtotal = sum(Decimal(item.producto.precio) * item.quantity for item in cart_items)
+    iva = subtotal * Decimal('0.19')
     total_iva = subtotal
 
     if not request.user.profile.has_purchased:
-        descuento = total_iva * Decimal(0.30)
+        descuento = total_iva * Decimal('0.30')
         total_con_descuento = total_iva - descuento
     else:
-        descuento = Decimal(0)
+        descuento = Decimal('0')
         total_con_descuento = total_iva
 
-    # subtotal = subtotal.quantize(Decimal('1'), rounding=ROUND_HALF_UP)
-    iva = iva.quantize(Decimal('1'), rounding=ROUND_HALF_UP)
-    # total_iva = total_iva.quantize(Decimal('1'), rounding=ROUND_HALF_UP)
-    total_con_descuento = total_con_descuento.quantize(Decimal('1'), rounding=ROUND_HALF_UP)
-    descuento = descuento.quantize(Decimal('1'), rounding=ROUND_HALF_UP)
+    subtotal = str(int(subtotal))
+    iva = str(int(iva))
+    total_iva = str(int(total_iva))
+    total_con_descuento = str(int(total_con_descuento))
+    descuento = str(int(descuento))
 
     return render(request, 'patitasYCompania/cart.html', {
         'cart_items': cart_items,

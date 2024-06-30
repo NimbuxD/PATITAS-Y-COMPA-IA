@@ -46,10 +46,11 @@
         <p><strong>Total (IVA incluido):</strong> ${{ subtotal }}</p>
         <p><small>(19% IVA: ${{ iva }})</small></p>
         <p><strong>Total a pagar:</strong> ${{ total_con_descuento }}</p>
-        {% if descuento > 0 %}
-            <p>(30% de descuento aplicado: -${{ descuento }})</p>
+        {% with descuento_valido=descuento|add:0 %}
+        {% if descuento_valido > 0 %}
+        <p>(30% de descuento aplicado: -${{ descuento_valido }})</p>
         {% endif %}
-        
+        {% endwith %}
 
         <a href="{% url 'clear_cart' %}" class="btn btn-warning">Vaciar Carrito</a>
         <a href="{% url 'checkout' %}" class="btn btn-success">Comprar</a>
