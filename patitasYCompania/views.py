@@ -1,4 +1,4 @@
-from decimal import Decimal, ROUND_HALF_UP
+from decimal import Decimal, ROUND_DOWN, ROUND_HALF_UP
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.mail import send_mail
 from django.http import HttpResponse, JsonResponse
@@ -22,6 +22,9 @@ def index(request):
 
 def success(request):
     return render(request, 'patitasYCompania/success.html')
+
+def success_compra(request):
+    return render(request, 'patitasYCompania/success_compra.html')
 
 # Vistas de Autenticación
 def registro(request):
@@ -96,6 +99,7 @@ def user_profile(request):
         user.save()
         user.profile.save()
         messages.success(request, 'Perfil actualizado correctamente.')
+        return redirect('user_profile')
     return render(request, 'patitasYCompania/perfil.html', {'usuario': user})
 
 @login_required
@@ -169,25 +173,35 @@ def add_to_cart(request, product_id):
     messages.success(request, f'¡{producto.nombre} ha sido añadido al carrito!')
     return redirect('cart')
 
+
+
 @login_required
 def cart(request):
     cart_items = CartItem.objects.filter(user=request.user)
-    subtotal = sum(item.producto.precio * item.quantity for item in cart_items)
-    iva = subtotal * Decimal(0.19)
+    subtotal = sum(Decimal(item.producto.precio) * item.quantity for item in cart_items)
+    iva = subtotal * Decimal('0.19')
     total_iva = subtotal
 
     if not request.user.profile.has_purchased:
-        descuento = total_iva * Decimal(0.30)
+        descuento = total_iva * Decimal('0.30')
         total_con_descuento = total_iva - descuento
     else:
-        descuento = Decimal(0)
+        descuento = Decimal('0')
         total_con_descuento = total_iva
 
+<<<<<<< HEAD
     # subtotal = subtotal.quantize(Decimal('1'), rounding=ROUND_HALF_UP)
     # iva = iva.quantize(Decimal('1'), rounding=ROUND_HALF_UP)
     # total_iva = total_iva.quantize(Decimal('1'), rounding=ROUND_HALF_UP)
     # total_con_descuento = total_con_descuento.quantize(Decimal('1'), rounding=ROUND_HALF_UP)
     # descuento = descuento.quantize(Decimal('1'), rounding=ROUND_HALF_UP)
+=======
+    subtotal = str(int(subtotal))
+    iva = str(int(iva))
+    total_iva = str(int(total_iva))
+    total_con_descuento = str(int(total_con_descuento))
+    descuento = str(int(descuento))
+>>>>>>> main
 
     return render(request, 'patitasYCompania/cart.html', {
         'cart_items': cart_items,
@@ -224,24 +238,28 @@ def clear_cart(request):
 
 @login_required
 def checkout(request):
+    cart_items = CartItem.objects.filter(user=request.user)
+    subtotal = sum(Decimal(item.producto.precio) * item.quantity for item in cart_items)
+    iva = subtotal * Decimal('0.19')
+    total_iva = subtotal
+
+    if not request.user.profile.has_purchased:
+        descuento = total_iva * Decimal('0.30')
+        total_con_descuento = total_iva - descuento
+    else:
+        descuento = Decimal('0')
+        total_con_descuento = total_iva
+
+    subtotal = str(int(subtotal))
+    iva = str(int(iva))
+    total_iva = str(int(total_iva))
+    total_con_descuento = str(int(total_con_descuento))
+    descuento = str(int(descuento))
+
     if request.method == 'POST':
         # Procesamiento del pago (omitido)
-
-        cart_items = CartItem.objects.filter(user=request.user)
-        subtotal = sum(item.producto.precio * item.quantity for item in cart_items)
-        iva = subtotal * Decimal(0.19)
-        total_iva = subtotal
-
-        if not request.user.profile.has_purchased:
-            descuento = total_iva * Decimal(0.30)
-            total_con_descuento = total_iva - descuento
-            request.user.profile.has_purchased = True  # Actualiza después de la primera compra
-            request.user.profile.save()
-        else:
-            descuento = Decimal(0)
-            total_con_descuento = total_iva
-
-        total_con_descuento = total_con_descuento.quantize(Decimal('1'), rounding=ROUND_HALF_UP)
+        request.user.profile.has_purchased = True
+        request.user.profile.save()
 
         email_body = f"""
         <h2>Gracias por tu compra en Patitas y Compañía, {request.user.username}!</h2>
@@ -265,9 +283,16 @@ def checkout(request):
         # Vaciar el carrito después del pago
         cart_items.delete()
 
-        return redirect('success')
+        return redirect('success_compra')
 
-    return render(request, 'patitasYCompania/checkout.html')
+    return render(request, 'patitasYCompania/checkout.html', {
+        'cart_items': cart_items,
+        'subtotal': subtotal,
+        'total_iva': total_iva,
+        'iva': iva,
+        'descuento': descuento,
+        'total_con_descuento': total_con_descuento,
+    })
 
 
 
